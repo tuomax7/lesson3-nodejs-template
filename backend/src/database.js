@@ -11,7 +11,12 @@ const sequelize = new Sequelize({
 /** INIT CHAT TABLE WITH MESSAGE **/
 
 const Chat = sequelize.define('chats', {
-  message: Sequelize.TEXT,
+  message: {
+    type: Sequelize.TEXT,
+    allowNull: false
+  },
+  room: Sequelize.TEXT,
+
 }, {
   timestamps: true,
   instanceMethods: {
@@ -23,6 +28,9 @@ const Chat = sequelize.define('chats', {
 
         // Message was added on the POST request
         message: this.message,
+
+        //chatroom
+        room: this.room,
       };
     },
   },
